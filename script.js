@@ -6,14 +6,19 @@ var startButton = document.getElementById("start")
 var timerId
 var score = 0;
 var highscore = localStorage.getItem("highscore");
-
-if(highscore !== null){
-    if (score > highscore) {
-        localStorage.setItem("highscore", score);      
-    }
-}
-else{
-    localStorage.setItem("highscore", score);
+var choicesEl = document.getElementById("choices");
+var submitButton = document.getElementById("submit")
+var initialsEl = document.getElementById("initials")
+function saveHighScore(){
+    var initials = initialsEl.value;
+    if(initials !== null){
+        var highscores = JSON.parse(window.localStorage.getItem("highscores")) | [];
+        var newScore = { score:time,
+            initials:initals};
+        highscore.push(newScore);
+        //save to localstorage
+        window.localStorage.setItem("highscores", JSON.stringify(highscores));
+        }
 }
 
 for (var i=0; i < questions.length; i++) {
@@ -26,10 +31,21 @@ for (var i=0; i < questions.length; i++) {
     }
 }
 alert("you got" + score + "/" + questions.length);
-
+function quizEnd(){
+    //stop timer
+    clearInterval(timerEd);
+    //show end screen
+    var endScreenEl= document.getElementById("endscreen");
+    endScreenEl.removeAttribute("class");
+    //display final score
+    var finalScoreEl=document.getElementById("finalscore");
+    finalScoreEl.textContent=time;
+    questionsEl.setAttribute("class", "hide")
+}
 function startQuiz(){
     startButton.setAttribute("class", "hide")
     questionsEl.setAttribute("class")
+    //start timer
     timerId = setInterval(clockTick, 1000)
     timerEl.textContent = time
     getQuestion()
@@ -63,7 +79,16 @@ function questionsClick() {
     }
 }
 function getQuestion(){
-    //CODE
+    var currentQuestion = questions[currentQuestionIndex];
+    currentQuestion.choices.forEach(function(choice){
+        var choiceNode = document.createElement('button');
+        choiceNode = setAttribute("class","choice");
+        choiceNode = setAttribute("value", choice);
+        choiceNode.onclick = questionsClick;
+        choicesEl.appendChild(choiceNode);
+    })
 }
 
 startButton.onClick = startQuiz;
+
+submitButton.onClick = saveHighScore;
