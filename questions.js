@@ -1,3 +1,4 @@
+// building out the questions array
 var questions = [
     {
         prompt: "What does Sponge Bob do for a living?",
@@ -13,6 +14,16 @@ var questions = [
         prompt: "What color are those big red firetrucks?",
         choices: ["Yellow", "Blue", "Red"],
         answer: "Red"
+    },
+    {
+        prompt: "Where is Denis from?",
+        choices: ["Mars", "Uranus", "Croatia"],
+        answer: "Croatia"
+    },
+    {
+        prompt: "How good is Denis at coding?",
+        choices: ["Intern", "Jr. Dev", "Senior Dev"],
+        answer: "Intern"
     }
     
     ];

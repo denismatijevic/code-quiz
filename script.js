@@ -1,12 +1,13 @@
+// declaring variables 
 var startButton = document.getElementById("start")
 var questionsEl = document.getElementById("questions")
-var time = 50;
+var time = 80;
 var timerEl = document.getElementById("timer")
 var currentQuestionIndex = 0;
 var choicesEl = document.getElementById("choices");
 var feedbackEl = document.getElementById("feedback")
 var initialsEl = document.getElementById("initials")
-
+// quiz start
 function startQuiz(){
     var startScEl =  document.getElementById("start-screen");
     startButton.setAttribute("class", "hide")
@@ -15,12 +16,14 @@ function startQuiz(){
     timerEl.textContent = time
     getQuestion()
 }
+// starting the timer countdown
 startButton.onclick=startQuiz;
 function clockTick() {
     time--; 
     timerEl.textContent = time;
     if(time <= 0) {quizends();}
 }
+// populating the next question in the array
 function getQuestion(){
     var currentQuestion = questions[currentQuestionIndex];
     console.log(currentQuestion)
@@ -35,6 +38,7 @@ function getQuestion(){
         choicesEl.appendChild(choiceNode);
     })
 }
+// setting the paramaters for correct and incorrect answers
 function questionsClick() {
     if(this.value !== questions[currentQuestionIndex].answer){
         time-=15 // time=time-15
@@ -63,7 +67,7 @@ function quizends(){
     finalScoreEl.textContent = time
     questionsEl.setAttribute("class", "hide")
 }
-// high score 
+// saving the high score to local storage
 function saveHighScore(){
     var initials = initialsEl.value;
     if(initials !== null){

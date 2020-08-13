@@ -1,8 +1,23 @@
+/* stying the html */
 body {
-    text-align: left;
+    color: blue;
+    text-align: center;
     padding: 20px;
+    font-family: 'Franklin Gothic Medium';
+    padding: px;
+    background-color: rgb(119, 136, 153, 0.5);
 }
 .hide {
     visibility: hidden;
 
+}
+#start {
+    color: hsl(0, 9%, 52%);
+
+}
+#questions {
+    color: hsl(0, 9%, 52%);
+}
+#submit {
+    color: hsl(0, 9%, 52%);
 }
